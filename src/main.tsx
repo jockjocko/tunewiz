@@ -9,6 +9,7 @@ import theme from './Theme';
 import Home from './home/Home';
 import SignIn from './sign-in/SignIn';
 import { SnackbarProvider } from 'notistack';
+import SignOut from './sign-in/SignOut';
 
 ReactDOM.render(
     <React.StrictMode>
@@ -21,6 +22,7 @@ ReactDOM.render(
                             <Route index element={<Home />} />
                         </Route>
                         <Route path="/sign-in" element={<SignIn />} />
+                        <Route path="/sign-out" element={<SignOut />} />
                     </Routes>
                 </BrowserRouter>
             </SnackbarProvider>

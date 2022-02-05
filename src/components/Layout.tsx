@@ -12,6 +12,7 @@ import Toolbar from '@mui/material/Toolbar';
 import { SvgIconComponent } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import logo from '../logo.svg';
+import AccountMenu from './AccountMenu';
 
 export type SidebarLinkProps = {
     url: string;
@@ -78,15 +79,19 @@ export const Layout: FC<LayoutProps> = ({ children, links }) => {
                 }}
             >
                 <Toolbar>
-                    <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        edge="start"
-                        onClick={handleDrawerToggle}
-                        sx={{ mr: 2, display: { sm: 'none' } }}
-                    >
-                        <MenuIcon />
-                    </IconButton>
+                    <Box sx={{ flex: 1 }}>
+                        <IconButton
+                            color="inherit"
+                            aria-label="open drawer"
+                            edge="start"
+                            onClick={handleDrawerToggle}
+                            sx={{ mr: 2, display: { sm: 'none' } }}
+                        >
+                            <MenuIcon />
+                        </IconButton>
+                    </Box>
+
+                    <AccountMenu />
                 </Toolbar>
             </AppBar>
             <Box component="nav" sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}>

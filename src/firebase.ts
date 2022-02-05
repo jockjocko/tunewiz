@@ -1,5 +1,6 @@
 import { initializeApp, FirebaseOptions } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
+import { getAuth } from 'firebase/auth';
 const firebaseConfig: FirebaseOptions = {
     apiKey: 'AIzaSyCnvAO2DbxsYw7lkmJdOU328mRMhlzLfZg',
     authDomain: 'tunewiz-220ca.firebaseapp.com',
@@ -13,4 +14,7 @@ const firebaseConfig: FirebaseOptions = {
 
 const FirebaseApp = initializeApp(firebaseConfig);
 export const analytics = getAnalytics(FirebaseApp);
+
+export const Auth = getAuth(FirebaseApp);
+
 export default FirebaseApp;

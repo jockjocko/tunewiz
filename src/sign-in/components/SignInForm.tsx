@@ -5,8 +5,9 @@ import { TextField } from 'formik-mui';
 import { GoogleIcon } from './SocialIcons';
 import { useSnackbar } from 'notistack';
 import { AuthError, getAuth } from 'firebase/auth';
-import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useAuthState, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import FirebaseApp from '../../firebase';
+import { useNavigate } from 'react-router-dom';
 
 type FormInputs = {
     email: string;
@@ -39,6 +40,9 @@ export const SignInForm: React.FunctionComponent = () => {
     const { enqueueSnackbar, closeSnackbar } = useSnackbar();
     const [signInWithEmailAndPassword, , , emailError] = useSignInWithEmailAndPassword(auth);
     const [signInWithGoogle, , , googleError] = useSignInWithGoogle(auth);
+    const [user] = useAuthState(auth);
+
+    const navigate = useNavigate();
 
     const logError = (error: AuthError) => {
         console.error(error);
@@ -49,6 +53,11 @@ export const SignInForm: React.FunctionComponent = () => {
             enqueueSnackbar(`Unable to Sign in`, { variant: 'error' });
         }
     };
+
+    useEffect(() => {
+        if (user) navigate('/');
+    }, [user]);
+
     useEffect(() => {
         if (emailError) logError(emailError);
     }, [emailError]);
