@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import { Formik, Field } from 'formik';
-import { Box, Button, Divider, LinearProgress, Skeleton } from '@mui/material';
+import { Box, Button, Divider, LinearProgress, Link, Skeleton, Typography } from '@mui/material';
 import { TextField } from 'formik-mui';
 import { GoogleIcon } from './SocialIcons';
 import { useSnackbar } from 'notistack';
 import { AuthError, getAuth } from 'firebase/auth';
 import { useAuthState, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import FirebaseApp from '../../firebase';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link as RouterLink } from 'react-router-dom';
 
 type FormInputs = {
     email: string;
@@ -94,8 +94,16 @@ export const SignInForm: React.FunctionComponent = () => {
                     <Box mb={3}>
                         <Field fullWidth component={TextField} variant="outlined" name="email" type="email" label="Email" />
                     </Box>
-                    <Box mb={3}>
+                    <Box mb={2}>
                         <Field fullWidth component={TextField} variant="outlined" type="password" label="Password" name="password" />
+                    </Box>
+
+                    <Box sx={{ mb: 2 }}>
+                        <Typography variant="subtitle2">
+                            <Link component={RouterLink} to="/sign-in">
+                                Forgot Password?
+                            </Link>
+                        </Typography>
                     </Box>
 
                     <Box mb={3}>
@@ -104,15 +112,23 @@ export const SignInForm: React.FunctionComponent = () => {
                         </Button>
                     </Box>
 
+                    <Box sx={{ mb: 3, textAlign: 'center' }}>
+                        <Typography variant="subtitle2">
+                            <Link component={RouterLink} to="/sign-up">
+                                {`Don't Have an account? Sign Up`}
+                            </Link>
+                        </Typography>
+                    </Box>
+
                     <Divider />
 
                     <Box mt={3} display="flex" justifyContent="center" flexWrap="wrap">
                         <Button
-                            sx={{ background: 'white' }}
                             onClick={() => signInWithGoogle()}
                             startIcon={<GoogleIcon />}
                             variant="contained"
                             disabled={isSubmitting}
+                            color="secondary"
                         >
                             Sign in with Google
                         </Button>
