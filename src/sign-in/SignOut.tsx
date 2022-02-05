@@ -8,8 +8,9 @@ const SignOut = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        signOut(auth);
-        navigate('/sign-in');
+        signOut(auth).then(() => {
+            navigate('/sign-in');
+        });
     });
 
     return null;

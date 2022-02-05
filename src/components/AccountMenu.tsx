@@ -25,10 +25,6 @@ export default function AccountMenu() {
         setAnchorEl(null);
     };
 
-    const signOut = () => {
-        navigate('/sign-out');
-    };
-
     return (
         <React.Fragment>
             <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
@@ -80,7 +76,7 @@ export default function AccountMenu() {
                 transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
-                <MenuItem onClick={signOut}>
+                <MenuItem onClick={() => navigate('/sign-out')}>
                     <ListItemIcon>
                         <Logout fontSize="small" />
                     </ListItemIcon>
